@@ -80,8 +80,8 @@ void ChangeDesktop::changeDesktop() {
 
     // Switch to the next/previous desktop
     int nextDesktop = this->next
-            ? (currentDesktop + 1) % numDesktops
-            : (currentDesktop - 1 + numDesktops) % numDesktops;
+            ? ((currentDesktop < (numDesktops - 2)) ? currentDesktop + 1 : numDesktops - 1)
+            : ((currentDesktop > 0) ? currentDesktop - 1 : 0);
 
     XClientMessageEvent event;
     event.window = QX11Info::appRootWindow(QX11Info::appScreen());
